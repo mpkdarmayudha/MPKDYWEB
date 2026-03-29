@@ -1,0 +1,1626 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MPK - SMA Darma Yudha</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #e53935;
+        --primary-hover: #d32f2f;
+        --secondary: #ffebee;
+        --bg-color: #f5f5f5;
+        --card-bg: #ffffff;
+        --text-main: #1e1e1e;
+        --text-muted: #666666;
+        --border-color: #e0e0e0;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+        --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 16px 24px rgba(0, 0, 0, 0.08);
+        --radius-md: 0.75rem;
+        --radius-lg: 1.25rem;
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3.5rem;
+        color: var(--text-main);
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: var(--primary);
+        border-radius: 2px;
+      }
+
+      p {
+        color: var(--text-muted);
+      }
+
+      /* Layout */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      section {
+        padding: 7rem 0;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05); /* Smooth slight bounce hover effect */
+      }
+
+      .logo img {
+        width: 140px; /* Base size for Desktop */
+        height: auto;
+        max-height: 52px; /* Navbar safe bounds */
+        max-width: 100%;
+        object-fit: contain; /* Prevent aspect ratio distortion */
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-main);
+      }
+
+      /* Button */
+      .btn {
+        display: inline-block;
+        background-color: var(--primary);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          var(--secondary) 0%,
+          var(--bg-color) 100%
+        );
+        padding: 5rem 1.5rem 2rem; /* Added top padding to account for fixed navbar */
+        position: relative;
+      }
+
+      .hero .container {
+        width: 100%;
+        max-width: 1200px;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+        color: var(--text-main);
+        animation: fadeInUp 0.8s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .hero h1 span {
+        color: var(--primary);
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        max-width: 650px;
+        margin: 0 auto 2.5rem;
+        animation: fadeInUp 0.8s ease 0.2s forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .hero .btn-group {
+        animation: fadeInUp 0.8s ease 0.4s forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(229, 57, 53, 0.1);
+        transition: var(--transition);
+      }
+
+      .scroll-indicator:hover {
+        background: rgba(229, 57, 53, 0.2);
+        color: var(--primary-hover);
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        40% {
+          transform: translate(-50%, -15px);
+        }
+        60% {
+          transform: translate(-50%, -7px);
+        }
+      }
+
+      /* Cards */
+      .grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .card:hover {
+        box-shadow: 0 12px 30px rgba(229, 57, 53, 0.15);
+        transform: translateY(-6px);
+        border-color: rgba(229, 57, 53, 0.3);
+      }
+
+      /* About Section */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .mission-list {
+        list-style-position: inside;
+        margin-top: 1rem;
+        color: var(--text-muted);
+      }
+
+      .mission-list li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Structure Section */
+      .member-card {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .member-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: var(--secondary);
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: var(--primary);
+        border: 4px solid white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .member-card h3 {
+        margin-bottom: 0.25rem;
+      }
+
+      .member-position {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
+
+      /* Programs Section */
+      .program-card {
+        border-left: 4px solid var(--primary);
+      }
+
+      .program-card h3 {
+        margin-bottom: 1rem;
+      }
+
+      /* Aspirations Section */
+      .aspirations-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text-main);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-family: inherit;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Activities Section */
+      .activity-item {
+        display: flex;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+      }
+
+      .activity-date {
+        min-width: 100px;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .activity-content h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--text-main);
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Tabs and dynamic elements */
+      .tabs-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .tab-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--primary);
+        background: transparent;
+        color: var(--primary);
+        border-radius: 2rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .tab-btn.active,
+      .tab-btn:hover {
+        background: var(--primary);
+        color: white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .fade-content {
+        animation: fadeEffect 0.5s ease;
+      }
+
+      @keyframes fadeEffect {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Organization Specific */
+      .leader-card {
+        border: 2px solid var(--primary);
+        box-shadow: var(--shadow-md);
+        margin: 0 auto 3rem;
+        max-width: 400px;
+        position: relative;
+      }
+
+      .leader-badge {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: white;
+        padding: 0.25rem 1.5rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      /* News System & Modal */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .news-card {
+        cursor: pointer;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-img-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .news-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .news-card:hover .news-img-container img {
+        transform: scale(1.05);
+      }
+
+      .news-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-content h3 {
+        margin: 0.5rem 0;
+        color: var(--text-main);
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal.show {
+        opacity: 1;
+      }
+
+      .modal-content {
+        background-color: var(--card-bg);
+        border-radius: var(--radius-lg);
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        transform: translateY(20px) scale(0.95);
+        opacity: 0;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .modal.show .modal-content {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        cursor: pointer;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.9);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .close-modal:hover {
+        color: var(--primary);
+        background: var(--secondary);
+      }
+
+      .modal-gallery {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      #modal-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .thumbnail-list {
+        display: flex;
+        gap: 0.8rem;
+        padding: 1rem 1.5rem;
+        overflow-x: auto;
+        background: var(--bg-color);
+      }
+
+      .thumbnail-list::-webkit-scrollbar {
+        height: 6px;
+      }
+      .thumbnail-list::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .thumbnail-list::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+      }
+
+      .gallery-thumb {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        opacity: 0.6;
+        transition: var(--transition);
+        border: 2px solid transparent;
+        flex-shrink: 0;
+      }
+
+      .gallery-thumb.active,
+      .gallery-thumb:hover {
+        opacity: 1;
+      }
+
+      .gallery-thumb.active {
+        border-color: var(--primary);
+      }
+
+      .modal-body {
+        padding: 2.5rem;
+      }
+
+      .modal-body h3 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      #modal-text p {
+        margin-bottom: 1rem;
+        color: var(--text-main);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      /* Style modal scrollbar */
+      .modal-content::-webkit-scrollbar {
+        width: 8px;
+      }
+      .modal-content::-webkit-scrollbar-track {
+        background: var(--bg-color);
+      }
+      .modal-content::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 10px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .logo img {
+          width: 120px; /* Tablet medium size */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .logo img {
+          width: 100px; /* Mobile smaller size, still very prominent */
+          max-height: 45px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 4rem;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 1rem;
+          text-align: center;
+          box-shadow: var(--shadow-md);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .activity-item {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <img src="LOGO.png" alt="Darma Yudha Achievers MPK" />
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#structure">Pengurus</a></li>
+          <li><a href="#programs">Program</a></li>
+          <li><a href="#activities">Kegiatan</a></li>
+          <li><a href="#aspirations">Aspirasi</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+      <div class="container">
+        <h1>Majelis Perwakilan <span>Kelas</span></h1>
+        <p>
+          Majelis Perwakilan Kelas SMA Darma Yudha. Kami hadir menjadi jembatan
+          suara siswa dan mitra kolaborasi sekolah dalam mewujudkan lingkungan
+          Achievers yang inspiratif.
+        </p>
+        <div class="btn-group">
+          <a href="#aspirations" class="btn">Sampaikan Aspirasi</a>
+          <a
+            href="#about"
+            class="btn"
+            style="
+              background: white;
+              color: var(--text-main);
+              margin-left: 1rem;
+              border: 1px solid var(--border-color);
+            "
+            >Pelajari Lebih Lanjut</a
+          >
+        </div>
+      </div>
+      <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-content">
+          <h2>Tentang Majelis Perwakilan Kelas</h2>
+          <p style="margin-bottom: 1.5rem">
+            Majelis Perwakilan Kelas (MPK) SMA Darma Yudha adalah tonggak
+            perwakilan siswa yang berfungsi mengawasi dan mengevaluasi kinerja
+            OSIS, serta menjadi wadah digital penampung aspirasi untuk seluruh
+            kelas guna menyatukan harmoni sekolah.
+          </p>
+
+          <h3 style="margin-bottom: 1rem; color: var(--text-main)">Visi</h3>
+          <p style="margin-bottom: 1.5rem">
+            Mewujudkan siswa SMA Darma Yudha yang aspiratif, solid, dan
+            berintegritas tinggi, serta menjadikan MPK sebagai lembaga
+            legislator dan evaluator yang profesional di lingkungan sekolah.
+          </p>
+
+          <h3 style="margin-bottom: 1rem; color: var(--text-main)">Misi</h3>
+          <ul class="mission-list">
+            <li>
+              Menampung dan menyalurkan aspirasi seluruh siswa kepada pihak
+              sekolah.
+            </li>
+            <li>
+              Mengawal pelaksanaan program kerja OSIS SMA Darma Yudha secara
+              transparan.
+            </li>
+            <li>
+              Turut serta menjaga dan menegakkan nilai-nilai moral dan tata
+              tertib kepelikan.
+            </li>
+            <li>
+              Memfasilitasi musyawarah terbuka yang konstruktif dan menjunjung
+              sportivitas.
+            </li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <div
+            class="card"
+            style="
+              background: var(--secondary);
+              height: 400px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              padding: 2rem;
+            "
+          >
+            <!-- Placeholder UI graphic -->
+            <div>
+              <svg
+                width="120"
+                height="120"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--primary)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="margin-bottom: 1rem"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <h3 style="color: var(--primary)">Jembatan Aspirasi</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" style="background-color: white">
+      <div class="container">
+        <h2>Struktur Organisasi</h2>
+        <div class="tabs-container" id="structure-tabs"></div>
+        <div id="structure-content"></div>
+      </div>
+    </section>
+
+    <!-- Work Programs -->
+    <section id="programs">
+      <div class="container">
+        <h2>Program Kerja</h2>
+        <div class="tabs-container" id="program-tabs"></div>
+        <div class="grid grid-3" id="program-content"></div>
+      </div>
+    </section>
+
+    <!-- News / Activities Section -->
+    <section id="activities" style="background-color: white">
+      <div class="container">
+        <h2>Berita & Kegiatan</h2>
+        <div class="news-grid" id="news-container">
+          <!-- News items injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- News Modal -->
+    <div id="news-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-gallery">
+          <img id="modal-image" src="" alt="News Image" />
+          <div id="modal-thumbnails" class="thumbnail-list"></div>
+        </div>
+        <div class="modal-body">
+          <h3 id="modal-title"></h3>
+          <span
+            id="modal-date"
+            class="activity-date"
+            style="display: inline-block; margin-bottom: 1.5rem"
+          ></span>
+          <div id="modal-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aspirations Form (Private Submission) -->
+    <section id="aspirations">
+      <div class="container">
+        <h2>Suara Kamu, Perubahan Kita</h2>
+        <div class="aspirations-container">
+          <!-- Form -->
+          <div class="form-container">
+            <div class="card">
+              <h3 style="margin-bottom: 1rem">Kirim Aspirasi</h3>
+              <p
+                style="
+                  font-size: 0.875rem;
+                  color: #e53935;
+                  margin-bottom: 1.5rem;
+                  font-weight: 500;
+                  background: #ffebee;
+                  padding: 0.75rem;
+                  border-radius: 0.5rem;
+                  border: 1px solid #ffcdd2;
+                "
+              >
+                🔒 Aspirasi Anda akan dikirim langsung ke pihak MPK
+              </p>
+              <form id="aspiration-form">
+                <div class="form-group">
+                  <label for="name">Nama (Opsional)</label>
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    placeholder="Biarkan kosong jika ingin anonim"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="title">Judul Topik *</label>
+                  <input
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    placeholder="Contoh: Perbaikan Fasilitas Kantin"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message">Pesan / Saran *</label>
+                  <textarea
+                    id="message"
+                    class="form-control"
+                    placeholder="Tuliskan aspirasi kamu secara jelas dan sopan..."
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%">
+                  Kirim Aspirasi
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <h2 style="color: white; margin-bottom: 1rem; font-size: 1.5rem">
+          MPK SMA Darma Yudha
+        </h2>
+        <p style="color: #9ca3af; margin-bottom: 2rem">
+          Mewujudkan prestasi bersama Achievers melalui suara dan kolaborasi
+          pelajar.
+        </p>
+        <p style="color: #6b7280; font-size: 0.875rem">
+          &copy; 2026 MPK SMA Darma Yudha. Semua hak cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      (function () {
+        // Initialize EmailJS
+        // TODO: Ganti YOUR_PUBLIC_KEY dengan Public Key dari akun EmailJS Anda
+        emailjs.init({
+          publicKey: "DeytjJKhc48maKwOy",
+        });
+      })();
+    </script>
+
+    <!-- JavaScript logic -->
+    <script type="module">
+      document.addEventListener("DOMContentLoaded", () => {
+        /* --- Organization Data --- */
+        const orgDivisions = [
+          {
+            id: "pengurus-harian",
+            name: "Pengurus Harian",
+            label: "Inti Organisasi",
+            tabName: "Harian",
+            leader: {
+              name: "Neilson Huang",
+              position: "Ketua MPK",
+              photo:
+                "<img src='KETUAMPK.jpg' alt='KETUAMPK.jpg' style='width:100%; height:100%; border-radius:50%; object-fit:cover;'>",
+              desc: "Bertanggung jawab atas jalannya organisasi dan koordinasi dengan pembina.",
+            },
+            members: [
+              {
+                name: "Olivia Margareth Samosir",
+                position: "Wakil MPK",
+                photo: "",
+                desc: "Membantu ketua dalam menjalankan tugas-tugas organisasi.",
+              },
+              {
+                name: "Kanitha Cassie",
+                position: "Sekretaris 1",
+                photo: "",
+                desc: "Mengelola administrasi utama dan surat menyurat.",
+              },
+              {
+                name: "Giselle Melody Sim ",
+                position: "Wakil Sekretaris",
+                photo: "",
+                desc: "Membantu sekretaris dalam pencatatan dan notulensi.",
+              },
+              {
+                name: "Jenifer Thio Rensia",
+                position: "Bendahara",
+                photo: "",
+                desc: "Mengatur arus keuangan dan menyusun anggaran MPK.",
+              },
+            ],
+            programs: [
+              {
+                title: "Musyawarah Perwakilan Kelas",
+                desc: "Forum tertinggi organisasi untuk membahas tata tertib, program kerja, dan evaluasi kepengurusan OSIS dan MPK.",
+              },
+              {
+                title: "Kotak Suara Siswa",
+                desc: "Penyediaan fasilitas fisik dan digital untuk menampung keluhan, saran, dan ide kreatif siswa.",
+              },
+              {
+                title: "Sidang Pleno & Evaluasi",
+                desc: "Pertemuan rutin untuk mengevaluasi transparansi dan keberhasilan program OSIS.",
+              },
+            ],
+          },
+          {
+            id: "bidang-1",
+            name: "Perencanaan Kedepan",
+            label: "Bidang 1",
+            tabName: "Perencanaan",
+            leader: {
+              name: "Andi Wijaya",
+              position: "Ketua Bidang",
+              photo: "🧑🏻",
+              desc: "Koordinator bidang perencanaan proker dan tata laksana.",
+            },
+            members: [
+              {
+                name: "Reza Rahardian",
+                position: "Anggota",
+                photo: "👨🏻‍🦱",
+                desc: "Pengawas kegiatan OSIS.",
+              },
+              {
+                name: "Putri Marino",
+                position: "Anggota",
+                photo: "👩🏽",
+                desc: "Pengawas program pembinaan.",
+              },
+            ],
+            programs: [
+              {
+                title: "Evaluasi Ekstrakurikuler Rohani",
+                desc: "Memantau dan mengevaluasi seluruh program kerja divisi kerohanian OSIS.",
+              },
+              {
+                title: "Pengawasan PHBI",
+                desc: "Turut serta mengawasi kelancaran acara Peringatan Hari Besar Islam/Agama Lain di sekolah.",
+              },
+            ],
+          },
+          {
+            id: "bidang-2",
+            name: "Tata Tertib",
+            label: "Bidang 2",
+            tabName: "Tata Tertib",
+            leader: {
+              name: "Citra Kirana",
+              position: "Ketua Bidang",
+              photo: "👩🏽‍🦱",
+              desc: "Koordinator bidang budi pekerti luhur atau akhlak mulia dan kedisiplinan.",
+            },
+            members: [
+              {
+                name: "Joko Anwar",
+                position: "Anggota",
+                photo: "👨🏻",
+                desc: "Pengawas program razia tata tertib sekolah.",
+              },
+              {
+                name: "Tara Basro",
+                position: "Anggota",
+                photo: "👩🏻‍🦰",
+                desc: "Pengawas kedisiplinan dan kepatuhan.",
+              },
+            ],
+            programs: [
+              {
+                title: "Razia Kedisiplinan Terpadu",
+                desc: "Berkolaborasi dengan BK dan OSIS dalam melaksanakan pengecekan tata tertib siswa.",
+              },
+              {
+                title: "Evaluasi Tata Tertib Siswa",
+                desc: "Menganalisa efektivitas tata tertib sekolah saat ini.",
+              },
+            ],
+          },
+          {
+            id: "bidang-3",
+            name: "Hubungan Masyarakat",
+            label: "Bidang 3",
+            tabName: "Humas",
+            leader: {
+              name: "Iqbaal Ramadhan",
+              position: "Ketua Bidang",
+              photo: "👦🏽",
+              desc: "Koordinator bidang hubungan eksternal dan keterlibatan publik.",
+            },
+            members: [
+              {
+                name: "Vanesha Prescilla",
+                position: "Anggota",
+                photo: "👧🏻",
+                desc: "Pengelola media massa dan platform digital.",
+              },
+              {
+                name: "Adhisty Zara",
+                position: "Anggota",
+                photo: "👱🏻‍♀️",
+                desc: "Public relations dan narahubung siswa.",
+              },
+              {
+                name: "Angga Yunanda",
+                position: "Anggota",
+                photo: "👨🏻‍🎓",
+                desc: "Humas untuk penjaringan aspirasi.",
+              },
+            ],
+            programs: [
+              {
+                title: "Pengelolaan Portal Interaktif",
+                desc: "Menjadikan portal web MPK sebagai sumber informasi resmi organisasi.",
+              },
+              {
+                title: "Sosialisasi Aspirasi Kelas",
+                desc: "Mengadakan kunjungan kelas rutin untuk mediasi masalah belajar.",
+              },
+            ],
+          },
+          {
+            id: "bidang-4",
+            name: "Partisipasi",
+            label: "Bidang 4",
+            tabName: "Partisipasi",
+            leader: {
+              name: "Nicholas Saputra",
+              position: "Ketua Bidang",
+              photo: "👨🏻‍🦳",
+              desc: "Koordinator partisipasi siswa dan pengembangan bakat.",
+            },
+            members: [
+              {
+                name: "Dian Sastrowardoyo",
+                position: "Anggota",
+                photo: "👩🏻‍🏫",
+                desc: "Pengawas ekstrakurikuler peminatan akademik/olimpiade.",
+              },
+              {
+                name: "Raline Shah",
+                position: "Anggota",
+                photo: "👩🏻‍💼",
+                desc: "Pengawas bidang kesenian dan lomba kreativitas.",
+              },
+              {
+                name: "Joe Taslim",
+                position: "Anggota",
+                photo: "🥋",
+                desc: "Pengawas turnamen olahraga antar kelas/sekolah.",
+              },
+            ],
+            programs: [
+              {
+                title: "Evaluasi Class Meeting",
+                desc: "Memantau jalannya kompetisi pasca ujian untuk memastikan sportivitas.",
+              },
+              {
+                title: "Pengawasan Pentas Seni",
+                desc: "Mengevaluasi kegiatan pentas seni dari awal persiapan hingga laporan pertanggungjawaban.",
+              },
+              {
+                title: "Monitoring Prestasi Lomba",
+                desc: "Mendata dan memvalidasi siswa yang berprestasi dalam lomba eksternal.",
+              },
+            ],
+          },
+        ];
+
+        let activeDivisionId = "pengurus-harian";
+
+        const structureTabsContainer =
+          document.getElementById("structure-tabs");
+        const structureContentContainer =
+          document.getElementById("structure-content");
+        const programTabsContainer = document.getElementById("program-tabs");
+        const programContentContainer =
+          document.getElementById("program-content");
+
+        // Render Tabs Function
+        function renderTabs() {
+          structureTabsContainer.innerHTML = "";
+          programTabsContainer.innerHTML = "";
+
+          orgDivisions.forEach((div) => {
+            // Structure Tab Button
+            const sBtn = document.createElement("button");
+            sBtn.className = `tab-btn ${div.id === activeDivisionId ? "active" : ""}`;
+            sBtn.textContent = div.tabName;
+            sBtn.onclick = () => switchTab(div.id);
+            structureTabsContainer.appendChild(sBtn);
+
+            // Program Tab Button
+            const pBtn = document.createElement("button");
+            pBtn.className = `tab-btn ${div.id === activeDivisionId ? "active" : ""}`;
+            pBtn.textContent = div.tabName;
+            pBtn.onclick = () => switchTab(div.id);
+            programTabsContainer.appendChild(pBtn);
+          });
+        }
+
+        // Render Content based on Active Tab
+        function renderContent() {
+          const division = orgDivisions.find((d) => d.id === activeDivisionId);
+
+          // Add fade animation reset
+          structureContentContainer.classList.remove("fade-content");
+          programContentContainer.classList.remove("fade-content");
+
+          // Trigger Reflow to re-animate
+          void structureContentContainer.offsetWidth;
+          void programContentContainer.offsetWidth;
+
+          structureContentContainer.classList.add("fade-content");
+          programContentContainer.classList.add("fade-content");
+
+          // Division Header UI
+          const divisionHeaderHtml = `
+                    <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 3rem;">
+                        <h3 style="font-size: 2.25rem; color: var(--text-main); margin-bottom: 0.5rem; display: inline-block; position: relative; padding-bottom: 0.5rem;">
+                            ${division.name}
+                            <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background-color: var(--primary); border-radius: 2px;"></span>
+                        </h3>
+                        <p style="color: var(--primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.875rem; margin-top: 0.5rem;">${division.label}</p>
+                    </div>
+                `;
+
+          // Generate Members HTML
+          let membersHtml = `<div class="members-grid">`;
+          division.members.forEach((m) => {
+            membersHtml += `
+                        <div class="card member-card">
+                            <div class="member-photo">${m.photo}</div>
+                            <h3>${m.name}</h3>
+                            <p class="member-position">${m.position}</p>
+                            <p style="font-size: 0.875rem; margin-top: 1rem; color: var(--text-muted);">${m.desc}</p>
+                        </div>
+                    `;
+          });
+          membersHtml += `</div>`;
+
+          // Render Structure Tab Content
+          structureContentContainer.innerHTML = `
+                    ${divisionHeaderHtml}
+                    <div class="card member-card leader-card">
+                        <div class="leader-badge">Ketua Divisi</div>
+                        <div class="member-photo">${division.leader.photo}</div>
+                        <h3>${division.leader.name}</h3>
+                        <p class="member-position">${division.leader.position}</p>
+                        <p style="font-size: 0.875rem; margin-top: 1rem; color: var(--text-muted);">${division.leader.desc}</p>
+                    </div>
+                    ${membersHtml}
+                `;
+
+          // Generate Programs HTML
+          let programsHtml = divisionHeaderHtml;
+          if (division.programs.length > 0) {
+            division.programs.forEach((p) => {
+              programsHtml += `
+                            <div class="card program-card">
+                                <h3>${p.title}</h3>
+                                <p>${p.desc}</p>
+                            </div>
+                        `;
+            });
+          } else {
+            programsHtml += `
+                        <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 2rem;">
+                            Belum ada program kerja spesifik untuk divisi ini.
+                        </div>
+                    `;
+          }
+
+          // Render Programs Tab Content
+          programContentContainer.innerHTML = programsHtml;
+        }
+
+        // Switch Tab Event Handler
+        function switchTab(id) {
+          if (activeDivisionId === id) return; // Ignore if already active
+          activeDivisionId = id;
+          renderTabs(); // Update active states on buttons
+          renderContent(); // Render content for the newly selected division
+        }
+
+        // Initialization Calls
+        if (structureTabsContainer && programTabsContainer) {
+          renderTabs();
+          renderContent();
+        }
+
+        /* --- Responsive Navbar --- */
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const navbar = document.getElementById("navbar");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+
+        // Close mobile menu on click
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+          });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 10) {
+            navbar.style.boxShadow = "var(--shadow-md)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+
+        /* --- Aspirations System --- */
+        const form = document.getElementById("aspiration-form");
+
+        // Simple HTML escape function to prevent basic XSS
+        const escapeHTML = (str) => {
+          return str.replace(
+            /[&<>'"]/g,
+            (tag) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                "'": "&#39;",
+                '"': "&quot;",
+              })[tag],
+          );
+        };
+
+        /* --- News System --- */
+        const newsData = [
+          {
+            id: "news-1",
+            title: "Selamat Datang Di Website MPK SMA Darma Yudha",
+            date: "29 Maret 2026",
+            excerpt: "Perilisan Website MPK SMA Darma Yudha",
+            content: "Website MPK SMA Darma Yudha telah resmi dirilis.",
+            images: ["HOMEPAGE.png"],
+          },
+          // {
+          //   id: "news-2",
+          //   title: "Sosialisasi Aspirasi Achievers",
+          //   date: "05 Feb 2026",
+          //   excerpt:
+          //     "Kunjungan ke seluruh kelas untuk mensosialisasikan tata cara penggunaan platform aspirasi digital sekolah.",
+          //   content:
+          //     "MPK SMA Darma Yudha turun langsung mensosialisasikan website aspirasi digital terbaru ke seluruh angkatan kelas. Peluncuran sistem baru ini merupakan inovasi, di mana seluruh siswa dapat menyampaikan saran, ide infrastruktur, serta usulan kegiatan secara transparan sebagai langkah konkret membangun kolaborasi terbuka antar elemen sekolah.",
+          //   images: [
+          //     "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          //     "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          //   ],
+          // },
+          // {
+          //   id: "news-3",
+          //   title: "Sidang Pembaruan AD/ART MPK",
+          //   date: "20 Mar 2026",
+          //   excerpt:
+          //     "Penyesuaian pedoman Anggaran Dasar dan Rumah Tangga untuk tahun ajaran baru sekolah.",
+          //   content:
+          //     "MPK SMA Darma Yudha mengadakan rapat konsolidasi di ruang persidangan untuk memutakhirkan konstitusi dan anggaran dasar organisasi. Sinkronisasi dengan pedoman disiplin sekolah dan kurikulum berjalan diharapkan mampu memperkuat landasan perwakilan siswa agar semakin akurat dan relevan.",
+          //   images: [
+          //     "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          //     "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          //     "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          //     "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          //   ],
+          // },
+        ];
+
+        const newsContainer = document.getElementById("news-container");
+        const newsModal = document.getElementById("news-modal");
+
+        if (newsContainer && newsModal) {
+          const closeModalBtn = document.querySelector(".close-modal");
+          const modalTitle = document.getElementById("modal-title");
+          const modalDate = document.getElementById("modal-date");
+          const modalImage = document.getElementById("modal-image");
+          const modalText = document.getElementById("modal-text");
+          const modalThumbnailsContainer =
+            document.getElementById("modal-thumbnails");
+
+          // Render News Cards
+          newsData.forEach((news) => {
+            const card = document.createElement("div");
+            card.className = "card news-card";
+            card.innerHTML = `
+                        <div class="news-img-container">
+                            <img src="${news.images[0]}" alt="${escapeHTML(news.title)}">
+                        </div>
+                        <div class="news-content">
+                            <span class="activity-date" style="font-size: 0.875rem;">${escapeHTML(news.date)}</span>
+                            <h3>${escapeHTML(news.title)}</h3>
+                            <p style="margin-bottom: 0;">${escapeHTML(news.excerpt)}</p>
+                        </div>
+                    `;
+
+            // Click Event - Open Modal
+            card.addEventListener("click", () => {
+              modalTitle.textContent = news.title;
+              modalDate.textContent = news.date;
+              modalText.innerHTML = `<p>${escapeHTML(news.content).replace(/\n/g, "<br>")}</p>`;
+
+              // Set Main Image
+              modalImage.src = news.images[0];
+
+              // Render Thumbnails
+              modalThumbnailsContainer.innerHTML = "";
+              if (news.images.length > 1) {
+                news.images.forEach((imgUrl, index) => {
+                  const thumb = document.createElement("img");
+                  thumb.src = imgUrl;
+                  thumb.className =
+                    "gallery-thumb" + (index === 0 ? " active" : "");
+                  thumb.alt = "Thumbnail " + (index + 1);
+
+                  thumb.addEventListener("click", () => {
+                    modalImage.src = imgUrl;
+                    // Update active class
+                    const allThumbs =
+                      modalThumbnailsContainer.querySelectorAll(
+                        ".gallery-thumb",
+                      );
+                    allThumbs.forEach((t) => t.classList.remove("active"));
+                    thumb.classList.add("active");
+                  });
+
+                  modalThumbnailsContainer.appendChild(thumb);
+                });
+              }
+
+              newsModal.style.display = "flex";
+              // Trigger reflow to apply CSS transition
+              void newsModal.offsetWidth;
+              newsModal.classList.add("show");
+              document.body.style.overflow = "hidden"; // prevent background scrolling
+            });
+
+            newsContainer.appendChild(card);
+          });
+
+          // Close Modal Logic
+          const closeNewsModal = () => {
+            newsModal.classList.remove("show");
+            setTimeout(() => {
+              newsModal.style.display = "none";
+              document.body.style.overflow = "auto"; // allow background scroll again
+            }, 300);
+          };
+
+          closeModalBtn.addEventListener("click", closeNewsModal);
+
+          newsModal.addEventListener("click", (e) => {
+            if (e.target === newsModal) {
+              closeNewsModal();
+            }
+          });
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && newsModal.classList.contains("show")) {
+              closeNewsModal();
+            }
+          });
+        }
+
+        // Basic bad words filter
+        const badWords = [
+          "anjing",
+          "babi",
+          "bangsat",
+          "goblok",
+          "tolol",
+          "jelek",
+          "kasar",
+        ];
+        const containsBadWords = (text) => {
+          const lowerText = text.toLowerCase();
+          return badWords.some((word) => lowerText.includes(word));
+        };
+
+        // Handle form submission
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const nameInput =
+            document.getElementById("name").value.trim() || "Anonim";
+          const titleInput = document.getElementById("title").value.trim();
+          const messageInput = document.getElementById("message").value.trim();
+
+          if (!titleInput || !messageInput) {
+            alert("Judul dan pesan wajib diisi!");
+            return;
+          }
+
+          if (containsBadWords(titleInput) || containsBadWords(messageInput)) {
+            alert("Harap gunakan bahasa yang sopan dan pantas.");
+            return;
+          }
+
+          const btn = form.querySelector("button");
+          const originalText = btn.textContent;
+          btn.textContent = "Mengirim...";
+          btn.disabled = true;
+
+          try {
+            // TODO: Ganti SERVICE_ID dan TEMPLATE_ID dengan ID dari EmailJS Anda
+            await emailjs.send("service_dlubra8", "template_2jkodpd", {
+              from_name: nameInput,
+              title: titleInput,
+              message: messageInput,
+              to_email: "mpkdarmayudha@gmail.com",
+            });
+
+            // Show feedback
+            btn.textContent = "Aspirasi berhasil dikirim";
+            btn.style.backgroundColor = "#10B981"; // Green color
+
+            // Reset form
+            form.reset();
+          } catch (error) {
+            console.error("Error sending aspiration: ", error);
+            alert(
+              "Gagal mengirim aspirasi. Pastikan pengaturan EmailJS sudah benar.",
+            );
+            btn.textContent = "Gagal Mengirim";
+            btn.style.backgroundColor = "#e53935"; // Red color
+          }
+
+          // Reset button after 3 seconds
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.backgroundColor = ""; // Revert to CSS class style
+            btn.disabled = false;
+          }, 3000);
+        });
+      });
+    </script>
+  </body>
+</html>
